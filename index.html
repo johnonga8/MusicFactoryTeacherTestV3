@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Factory</title>
+    <meta charset="utf-8" />
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+    <link href="css/kendo.common-bootstrap.min.css" rel="stylesheet" />
+    <link href="css/kendo.bootstrap.min.css" rel="stylesheet"/>
+	  <link href="css/jquery.fancybox.css" rel="stylesheet"/>
+	  <link href="css/flexslider.css" rel="stylesheet"/>
+    <script src="https://content.jwplatform.com/libraries/Lug7a9B5.js"></script>
+    <link href="css/main.css" rel="stylesheet" />
+    
+    <script src="cordova.js"></script>
+    <script src="kendo/js/jquery.min.js"></script>
+    <script src="kendo/js/kendo.mobile.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/jquery.linq.js"></script>
+    <script src="js/jquery.fancybox.pack.js"></script>
+    <script src="js/jquery.flexslider-min.js"></script>
+
+</head>
+<body>
+<!---BOOK COVER START-->
+<div id="preface-details-infant" class="book-main-wrap" data-role="view" data-layout="drawer-layout" data-before-show="beforeShowInfantpreface" data-after-show="afterShowInfantpreface" data-before-hide="beforeHideInfantpreface">
+
+  <header data-role="footer" class="book-main-wrap-header">
+    <div class="row">
+        <div class="col-xs-6">
+        </div>
+        <div class="col-xs-6" >
+            <strong><span data-bind="text: BookTitle"></span> <span data-bind="text: PrefaceTitle"></span></strong>
+        </div>	        
+    </div>       
+  </header>
+  
+  <div class="row book-content-wrap row-margin-null">
+    <div class="col-xs-12" id="preface">
+        <div data-bind="html: PrefaceContent">
+        </div>
+    </div>
+  </div>
+  
+  <footer data-role="header" class="book-main-wrap-footer">
+    <div class="row">
+        <div class="col-xs-6">
+            <a class="bttn-tableofcontents" data-role="button" data-rel="drawer" href="#table-of-contents-preface-infant"><span class="glyphicon glyphicon-menu-hamburger"></span><span data-bind="text: TableOfContentsLabel"></span></a>
+        </div>
+        <div class="col-xs-6">
+            <a class="bttn-next bttn-glossary-lesson" href="views/mf-infantbookglossary.html"  data-role="button" data-transition="slide"> <span class="span-bold km-text" data-bind="text: NextGlossary"></span>  <span class="span-bold km-text" data-bind="text: GlossaryTitle"></span> <span class="icon-right"></span></a>
+        </div>	        
+    </div> 
+  </footer>
+<!--<div class="preloader-mf"><div class="preloader-mf-img"></div></div>-->
+<script src="js/infantbookpreface.js"></script>
+</div>
+
+<!--drawer navigation-->
+<div data-role="drawer" id="table-of-contents-preface-infant" class="bookdetails-drawer table-of-contents" style="width:250px"  data-swipe-to-open="false"  data-show="onShowDrawer" data-views='["preface-details-infant"]'>
+      <div id="book-title" class="bookdetails-drawer-head">
+      <h1 data-bind="text: Book.Title"></h1>
+    </div>
+    <div data-role="scroller" style="height: 460px" id="scroller">
+      <div class="bookdetails-div bookdetails-preface"><a data-role="button" data-bind="events: { click: GoToPreface }"><span data-bind="text: PrefaceTitle"></span></a></div>
+      <div class="bookdetails-div bookdetails-cover"><a data-role="button" data-bind="events: { click: GoToGlossary }"><span data-bind="text: GlossaryTitle"></span></a></div>
+    </div>
+    <a data-click="hideDrawerIP" data-role="button" class="bttn-hidedrawer"></a>       
+</div>
+<!--end drawer navigation-->
+
+<!-- Chapter Nav Template -->
+<script id="themes-template" type="text/x-kendo-template">
+  <li>
+    <a class="km-widget km-button js-subnav-link" data-role="button" data-bind="attr: { title: Title }, events: { click: SlideToggle }" data-transition="none" data-role="button" class="js-subnav-link"> <span data-bind="text: Title"></span><span class="glyphicon glyphicon-triangle-bottom"></span></a>
+    <ul>
+      #= RenderLessonsTemplate(data) #
+    </ul>
+  </li>
+</script>
+
+<!-- Lesson Nav Template -->
+<script id="lessons-template" type="text/x-kendo-template">
+    # $.each(data.Lessons, function (index, lesson) { 
+            # <li>
+              <a class="km-widget km-button" data-bind="events: { click: SelectLesson }" data-transition="none">
+                <input class="js-lessonnumber" type="text" value="${lesson.LessonNumber}" hidden/>
+                <input class="js-chapternumber" type="text" value="${lesson.ThemeNumber}" hidden/>
+                ${lesson.Title}
+              </a>
+            </li> #
+      }); 
+    #
+</script>
+<!---BOOK COVER END-->
+<div class="preloader-mf"><div class="preloader-mf-img"></div></div>
+<script src="js/bindings.js"></script>
+<!--<script src="js/index.js"></script>-->
+</body>
+</html>
